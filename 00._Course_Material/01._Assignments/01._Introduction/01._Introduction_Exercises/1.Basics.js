@@ -11,7 +11,7 @@ const lastName = "Latif";
 
 const fullName = `${firstName} ${lastName}`;
 
-console.log(fullName)
+console.log(`My first name is ${firstName} and my last name is ${lastName}`);
 
 // --------------------------------------
 // Exercise 2 - Numbers and Strings
@@ -26,6 +26,8 @@ const increment = 1;
 // const currentYear = parseInt(year) + increment;
 // const currentYear = Number(year) + increment;
 const currentYear = +year + increment;
+
+console.log(currentYear);
 
 console.log(Number("1231af324"));
 console.log(parseInt("1231af324"));
