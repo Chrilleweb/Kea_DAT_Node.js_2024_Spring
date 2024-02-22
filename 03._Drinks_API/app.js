@@ -10,6 +10,8 @@ const drinks = [
   { id: 3, name: "Old Fashion" },
 ];
 
+let nextId = drinks.length + 1;
+
 app.get("/drinks", (req, res) => {
   res.send({ data: drinks });
 });
@@ -26,8 +28,10 @@ app.get("/drinks/:id", (req, res) => {
 
 app.post("/drinks", (req, res) => {
   const newDrink = req.body;
-  drinks.push(newDrink);
-  res.status(201).send({ data: newDrink });
+  newDrink.id = nextId++;
+  const drinkWithIdFirst = { id: newDrink.id, ...newDrink };
+  drinks.push(drinkWithIdFirst);
+  res.status(201).send({ data: drinkWithIdFirst });
 });
 
 app.delete("/drinks/:id", (req, res) => {
