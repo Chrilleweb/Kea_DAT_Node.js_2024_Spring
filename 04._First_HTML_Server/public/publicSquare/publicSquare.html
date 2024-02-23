@@ -9,6 +9,18 @@
         <h1>Public Square</h1>
         <h3>Monument</h3>
 
+        <h1>Known people</h1>
+        <h3 id="known-people-amount"></h3>
     
+        <script>
+            fetch('/knownPeople')
+                .then(response => response.json())
+                .then(result => {
+                    document.getElementById("known-people-amount").innerText = result.data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        </script>
 </body>
 </html>

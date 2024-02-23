@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./homepage.css"> -->
     <title>Homepage</title>
 </head>
 <body>
     <h1>Does this work!?!?!?!</h1>
 
+    <input id="inputbutton" type="text" placeholder="Your text here">
+    <button id="greeting-button">Get Greeting</button>
 
+    <h2 id="greeting-text"></h2>
+
+    <!-- assingment: get the greeting based on the name in the input field
+    and show it on the page -->
+
+    <script>
+        document.getElementById("greeting-button").addEventListener("click", function () {
+            const inputText = document.getElementById("inputbutton").value;
+            
+            fetch(`/greeting?name=${inputText}`)
+                .then(response => response.json())
+                .then(result => {
+                    document.getElementById("greeting-text").innerText = result.data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>    
+    <!-- <script src="./homepage.js"></script> -->
 </body>
 </html>

@@ -1,0 +1,19 @@
+{
+  "name": "date",
+  "version": "0.0.1",
+  "description": "Working with dates in Javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "date",
+    "Javascriptc",
+    "Express"
+  ],
+  "author": "Chrilleweb",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
