@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background-color: lightblue;
+      }
+      h1 {
+        color: grey;
+        margin-top: 50px;
+      }
+      p {
+        color: green;
+      }
+      h1,
+      p {
+        font-family: Arial, sans-serif;
+        text-align: center;
+      }
+    </style>
+    <title>Date and Time</title>
+  </head>
+  <body>
+    <h1>Date and Time for today where you are</h1>
+    <p id="datetime"></p>
+    <h1>Time in Las Vegas</h1>
+    <p id="lasVegasTime"></p>
+    <h1>Time in Tokyo</h1>
+    <p id="timeInTokyo"></p>
+    <h1>Countdown to New Year</h1>
+    <p id="countDownToNewYear"></p>
+    <h1>Day of the week</h1>
+    <p id="dayOfTheWeek"></p>
+    <h1>Month</h1>
+    <p id="month"></p>
+
+    <script>
+      var currentDateTime = new Date();
+      var formattedDateTime = currentDateTime.toLocaleString();
+      document.getElementById("datetime").innerHTML = formattedDateTime;
+
+      fetch("/timeInLasVegas")
+        .then((response) => response.json())
+        .then((result) => {
+          document.getElementById("lasVegasTime").innerHTML = result.data;
+        });
+
+      fetch("day")
+        .then((response) => response.json())
+        .then((result) => {
+          document.getElementById("dayOfTheWeek").innerHTML = result.data;
+        });
+
+      fetch("/month/version2")
+        .then((response) => response.json())
+        .then((result) => {
+          document.getElementById("month").innerHTML = result.data;
+        });
+
+      fetch("/timeInTokyo")
+        .then((response) => response.json())
+        .then((result) => {
+          document.getElementById("timeInTokyo").innerHTML = result.data;
+        });
+
+      fetch("/countDownToNewYear")
+        .then((response) => response.json())
+        .then((result) => {
+          const countdownElement =
+            document.getElementById("countDownToNewYear");
+
+          const days = result.data.days;
+          const hours = result.data.hours;
+          const minutes = result.data.minutes;
+          const seconds = result.data.seconds;
+
+          countdownElement.innerHTML = `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
+        })
+        .catch((error) =>
+          console.error("Error fetching countdown data:", error)
+        );
+    </script>
+  </body>
+</html>
